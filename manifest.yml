@@ -1,0 +1,10 @@
+applications:
+- path: .
+  memory: 512M
+  instances: 1
+  domain: mybluemix.net
+  name: cmpe-272-teamup
+  host: cmpe-272-teamup
+  disk_quota: 1024M
+  services:
+  - cmpe-272-teamup-cloudantNoSQLDB
