@@ -250,7 +250,7 @@ app.post('/delete_event_for_email', function(req, res) {
 
 app.post('/delete_all_events_for_email', function(req, res) {
 	var Email = req.body.email;
-	var key = req.ruqey.key;
+	var key = req.query.key;
 	
 	db.find({selector:{_id:{$gt:0}}, email:Email}, function(err, result) {
 		if(err) {
@@ -265,12 +265,12 @@ app.post('/delete_all_events_for_email', function(req, res) {
         res.setHeader("Content-Disposition", 'inline; filename="' + key + '"');
         
 		for(var index = 0; index < result.docs.length; ++index) {
+			res.write("Event: " + result.docs[index].event + " at place " + result.docs[index].place + " has been deleted \n");
 			db.destroy(result.docs[index]._id, result.docs[index]._rev, function(err, data) {
 				if(err) {
 					res.send("Error when delete Event :" + result.docs[index].event);
 					return 500;
 				}
-				res.write("Event: " + result.docs[index].event + " at place " + result.docs[index].place + " has been deleted \n");
 			});
 		}
 		res.end();
