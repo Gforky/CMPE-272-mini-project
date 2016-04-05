@@ -1,5 +1,7 @@
 // index.js
 
+/*eslint-env browser */
+/*globals xhrGet xhrPut xhrPost xhrDelete xhrAttach*/
 var REST_DATA = 'api/favorites';
 var KEY_ENTER = 13;
 var defaultItems = [
@@ -301,5 +303,5 @@ function stopLoadingMessage()
 
 showLoadingMessage();
 //updateServiceInfo();
-loadItems();
+//loadItems();
 
